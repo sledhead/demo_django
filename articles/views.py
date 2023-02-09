@@ -10,6 +10,8 @@ def article_detail_view(request, id=None):
 
         article_obj = Article.objects.get(id=id)
 
-    context
+    context = {
+        "object": article_obj
+    }
 
-    return render(request=request, template_name="mecool.html", context=tocool)
+    return render(request=request, template_name="/articles/details.html", context=context)
