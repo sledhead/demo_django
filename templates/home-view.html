@@ -9,4 +9,25 @@
 <b>Title:</b> {{title}}<br>
 <b>Content:</b> {{content}}
 
+<h3> Favorite Foods:</h3><br>
+
+<ul>
+    {% for name in foods %}
+    <li>
+        {{name}}
+    </li>
+    {% endfor %}
+</ul>
+
+
+<h3> Records in Database:</h3><br>
+
+<ul>
+    {% for name in records %}
+    <li>
+        {{name.title}} - <i>{{name.content}}</i>
+    </li>
+    {% endfor %}
+</ul>
+
 {% endblock content %}

@@ -13,12 +13,17 @@ def home_view(request):
 
     random_int = random.randint(10, 500010)
     database_rec = Article.objects.get(id=2)
+    favorite_food = ['ice cream','curry','cherry','donut']
+
+    all_records = Article.objects.all()
 
     database_rec_dict = {
 
         'title': database_rec.title,
         'content': database_rec.content,
-        'id': database_rec.id
+        'id': database_rec.id,
+        'foods': favorite_food,
+        'records': all_records
     }
 
     #new_database_str = f'<b>Database info:</b> {database_rec.title}, content: {database_rec.content}'
