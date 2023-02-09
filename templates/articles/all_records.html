@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h3> Records in Database:</h3><br>
+
+<ul>
+    {% for name in single_object%}
+    <li>
+        
+            {{name.title}} - <i>{{name.content}}</i>
+        
+    </li>
+    {% endfor %}
+</ul>
+<b>Thanks for surfing with us!!!</b>
+
+{% endblock content %}
