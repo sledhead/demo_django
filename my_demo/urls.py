@@ -20,5 +20,6 @@ from .views import home_view
 
 urlpatterns = [
     path('', home_view), #index page, home
+    path('articles/<int:id>/', home_view ),
     path('admin/', admin.site.urls),
 ]
