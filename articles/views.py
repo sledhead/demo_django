@@ -35,11 +35,20 @@ def article_all_view(request):
 
 def article_search_view(request):
 
-    query_dict = dict(request.GET)
+    query_dict = request.GET
     query_id = query_dict.get('query')
+
+    try:
+        query_id = int( query_dict.get('query') )
+
+    except:
+        query_id = None
+
     request_rec = None
+    #print(f'Here is the Number: {query_id}')
+    #print(f'Object type: {type(query_id)} ')
     if query_id is not None:
-        request_rec = Article.objects.get(query_id)
+        request_rec = Article.objects.get(id=query_id)
 
     
     context = {
