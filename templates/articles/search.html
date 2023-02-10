@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if object %}
+<h1> {{single_object.title}} </h1>
+<p> {{single_object.content}} </p>
+
+{% endif %}
+
+<b>Thanks for surfing with us!!!</b>
+
+{% endblock content %}
