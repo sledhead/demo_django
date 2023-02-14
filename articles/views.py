@@ -56,3 +56,14 @@ def article_search_view(request):
     }
 
     return render(request, "articles/search.html", context=context)
+
+
+def article_create_view(request):
+
+    
+
+    context = { }
+
+    
+
+    return render(request=request, template_name="articles/create.html", context=context)
