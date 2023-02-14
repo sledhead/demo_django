@@ -60,9 +60,23 @@ def article_search_view(request):
 
 def article_create_view(request):
 
-    
+    #print(request.POST)
+    context = {}
+    if( request.method == "POST"):
+        #adding new entry
 
-    context = { }
+        new_title = request.POST.get('title')
+        new_content = request.POST.get('content')
+
+        print(f"Here is the data the user sent in: {new_title} - {new_content}")
+
+        article_object = Article.objects.create(title=new_title, content=new_content)
+
+        context['object'] = article_object
+        
+        context['created'] = True
+
+    
 
     
 
