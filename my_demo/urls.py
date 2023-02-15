@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from articles import views
+from articles  import views
 
+from accounts.views import login_view
 from .views import home_view
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path('articles/<int:id>/', views.article_detail_view ),
     path('articles/all/', views.article_all_view ),
     path('admin/', admin.site.urls),
+    path('login/',login_view),
 ]
