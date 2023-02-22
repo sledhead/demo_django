@@ -69,6 +69,7 @@ def article_create_view(request):
     if( request.method == "POST"):
         #adding new entry
         form = ArticleForm(request.POST)
+        #show the data did not pass inspection in the form class
         context['form'] = form
         if( form.is_valid() ):
 
