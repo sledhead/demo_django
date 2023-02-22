@@ -68,17 +68,20 @@ def article_create_view(request):
     }
     if( request.method == "POST"):
         #adding new entry
+        form = ArticleForm(request.POST)
+        context['form'] = form
+        if( form.is_valid() ):
 
-        new_title = request.POST.get('title')
-        new_content = request.POST.get('content')
+            new_title = form.cleaned_data.get('title')
+            new_content = form.cleaned_data.get('content')
 
-        print(f"Here is the data the user sent in: {new_title} - {new_content}")
+            print(f"Here is the data the user sent in: {new_title} - {new_content}")
 
-        article_object = Article.objects.create(title=new_title, content=new_content)
+            article_object = Article.objects.create(title=new_title, content=new_content)
 
-        context['object'] = article_object
+            context['object'] = article_object
         
-        context['created'] = True
+            context['created'] = True
 
     
 
