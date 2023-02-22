@@ -63,29 +63,59 @@ def article_search_view(request):
 def article_create_view(request):
 
     #print(request.POST)
+    form = ArticleForm( request.POST or None)
     context = {
-        "form":ArticleForm()
+        "form":form
     }
-    if( request.method == "POST"):
-        #adding new entry
-        form = ArticleForm(request.POST)
-        #show the data did not pass inspection in the form class
-        context['form'] = form
-        if( form.is_valid() ):
+    
+    if( form.is_valid() ):
 
-            new_title = form.cleaned_data.get('title')
-            new_content = form.cleaned_data.get('content')
+        new_title = form.cleaned_data.get('title')
+        new_content = form.cleaned_data.get('content')
 
-            print(f"Here is the data the user sent in: {new_title} - {new_content}")
+        print(f"Here is the data the user sent in: {new_title} - {new_content}")
 
-            article_object = Article.objects.create(title=new_title, content=new_content)
+        article_object = Article.objects.create(title=new_title, content=new_content)
 
-            context['object'] = article_object
-        
-            context['created'] = True
+        context['object'] = article_object
+    
+        context['created'] = True
 
     
-
-    
-
     return render(request=request, template_name="articles/create.html", context=context)
+
+#ctrl K then ctrl C  comment
+#ctrl K then ctrl U uncomment
+
+# @login_required
+# def article_create_view(request):
+
+#     #print(request.POST)
+#     context = {
+#         "form":ArticleForm()
+#     }
+#     if( request.method == "POST"):
+#         #adding new entry
+#         form = ArticleForm(request.POST)
+#         #show the data did not pass inspection in the form class
+#         context['form'] = form
+#         if( form.is_valid() ):
+
+            # new_title = form.cleaned_data.get('title')
+            # new_content = form.cleaned_data.get('content')
+
+#             print(f"Here is the data the user sent in: {new_title} - {new_content}")
+
+#             article_object = Article.objects.create(title=new_title, content=new_content)
+
+#             context['object'] = article_object
+        
+#             context['created'] = True
+
+    
+
+    
+
+#     return render(request=request, template_name="articles/create.html", context=context)
+ 
+
