@@ -24,7 +24,11 @@ def login_view(request):
     else:
         form = AuthenticationForm(request)
 
-    return render(request,"accounts/login.html",{})
+    context = {
+        "form": form
+    }
+
+    return render(request,"accounts/login.html",context)
 
 def logout_view(request):
 
