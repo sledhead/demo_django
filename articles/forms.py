@@ -1,6 +1,15 @@
 from django import forms
 
-class ArticleForm(forms.Form):
+from .models import Article
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'content']
+
+        
+
+class ArticleFormOld(forms.Form):
     title = forms.CharField()
     content = forms.CharField()
 
