@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 
+#Register new user
 def register_view(request):
     form = UserCreationForm(request.POST or None)
     if( form.is_valid() ):
