@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.utils.text import slugify
 
 # Create your tests here.
 
@@ -18,3 +19,18 @@ class ArticleTestCase(TestCase):
     def test_queryset_count(self):
         qs = Article.objects.all()
         self.assertEqual( qs.count(), self.number_of_articles )
+
+    def test_hello_world_slug(self):
+        obj = Article.objects.all().order_by('id').first()
+        title = obj.title
+        slug = obj.slug
+        slugified_title = slugify(title)
+        self.assertEqual(slug, slugified_title )
+
+    def test_hello_world_slug_not_equal(self):
+        qs = Article.objects.exclude(slug__iexact='test-title')
+        for obj in qs:
+            title = obj.title
+            slug = obj.slug
+            slugified_title = slugify(title)
+            self.assertNotEqual(slug, slugified_title )
