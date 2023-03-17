@@ -46,7 +46,7 @@ class Article(models.Model):
 #         instance.save()
 
 def article_pre_save(sender, instance, *args, **kwargs):
-    print('pre_save')
+    # print('pre_save')
     
 
     if instance.slug is None:
@@ -56,7 +56,7 @@ pre_save.connect(article_pre_save, sender=Article)
 
 
 def article_post_save(sender, instance, created, *args, **kwargs):
-    print('post_save')
+    # print('post_save')
     
     if( created == True):
         slugify_instance_title(instance,save=True)
