@@ -23,8 +23,8 @@ from .views import home_view
 urlpatterns = [
     path('', home_view), #index page, home
     path('articles/', views.article_search_view ),
-    path('articles/create/', views.article_create_view ),
-    path('articles/<slug:slug>/', views.article_detail_view ),
+    path('articles/create/', views.article_create_view, name='article-create' ),
+    path('articles/<slug:slug>/', views.article_detail_view, name='article-detail'),
     path('articles/all/', views.article_all_view ),
     path('admin/', admin.site.urls),
     path('login/',login_view),
