@@ -25,7 +25,7 @@
 <ul>
     {% for name in records %}
     <li>
-        <a href="/articles/{{name.slug}}">
+        <a href="{{ name.get_absolute_url }}">
             {{name.title}} - <i>{{name.content}}</i>
         </a>
     </li>
