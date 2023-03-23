@@ -56,15 +56,17 @@ def article_search_view(request):
     except:
         query_id = None
 
-    request_rec = None
+    #request_rec = None
+    qs = Article.objects.all()
     #print(f'Here is the Number: {query_id}')
     #print(f'Object type: {type(query_id)} ')
     if query_id is not None:
-        request_rec = Article.objects.get(id=query_id)
+        #request_rec = Article.objects.get(id=query_id)
+        qs = Article.objects.filter(title__icontains=query_id)
 
     
     context = {
-        'object':request_rec
+        'object_list':qs
     }
 
     return render(request, "articles/search.html", context=context)
