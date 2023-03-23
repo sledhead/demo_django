@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render
 from django.http import Http404
 from .forms import ArticleForm
@@ -47,22 +48,20 @@ def article_all_view(request):
 
 def article_search_view(request):
 
-    query_dict = request.GET
-    query_id = query_dict.get('query')
+    query_id = request.GET.get('query')
+    #query_id = query_dict.get('query')
 
-    try:
-        query_id = int( query_dict.get('query') )
-
-    except:
-        query_id = None
+    
 
     #request_rec = None
+    #print(f"Here is the query: {query_id}")
     qs = Article.objects.all()
     #print(f'Here is the Number: {query_id}')
     #print(f'Object type: {type(query_id)} ')
     if query_id is not None:
         #request_rec = Article.objects.get(id=query_id)
-        qs = Article.objects.filter(title__icontains=query_id)
+        lookups = Q(title__icontains=query_id)
+        qs = Article.objects.filter(lookups)
 
     
     context = {
