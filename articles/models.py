@@ -9,7 +9,10 @@ from django.db.models import Q
 from .utils import slugify_instance_title
 
 class ArticleManager(models.Manager):
-    def search(self, query):
+    def search(self, query=None):
+        if( query is None or query == "" ):
+            return self.get_queryset().none()
+        
         lookups = Q(title__icontains=query) | Q(content__icontains=query)
         return self.get_queryset().filter(lookups)
     

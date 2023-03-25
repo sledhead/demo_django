@@ -49,22 +49,8 @@ def article_all_view(request):
 def article_search_view(request):
 
     query_id = request.GET.get('query')
-    #query_id = query_dict.get('query')
+    qs = Article.objects.search(query=query_id)
 
-    
-
-    #request_rec = None
-    #print(f"Here is the query: {query_id}")
-    qs = Article.objects.all()
-    #print(f'Here is the Number: {query_id}')
-    #print(f'Object type: {type(query_id)} ')
-    if query_id is not None:
-        #request_rec = Article.objects.get(id=query_id)
-        #lookups = Q(title__icontains=query_id) | Q(content__icontains=query_id)
-        #qs = Article.objects.filter(lookups)
-        qs = Article.objects.search(query_id)
-
-    
     context = {
         'object_list':qs
     }
