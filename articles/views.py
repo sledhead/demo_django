@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+
 from django.shortcuts import render
 from django.http import Http404
 from .forms import ArticleForm
@@ -60,7 +60,7 @@ def article_search_view(request):
     #print(f'Object type: {type(query_id)} ')
     if query_id is not None:
         #request_rec = Article.objects.get(id=query_id)
-        lookups = Q(title__icontains=query_id) | Q(content__icontains=query_id)
+        #lookups = Q(title__icontains=query_id) | Q(content__icontains=query_id)
         #qs = Article.objects.filter(lookups)
         qs = Article.objects.search(query_id)
 
