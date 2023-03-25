@@ -7,6 +7,11 @@ from django.utils import timezone
 
 from .utils import slugify_instance_title
 
+class ArticleManager(models.Manager):
+    def search(self, query):
+        return Article.objects.filter(title__icontains=query)
+    
+
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=120)
@@ -16,7 +21,8 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     publish = models.DateField(auto_now=False, auto_now_add=False, default=timezone.now)
 
-
+    objects = ArticleManager()
+    
     def get_absolute_url(self):
         #return f'/articles/{self.slug}/'
         return reverse("article-detail", kwargs={"slug":self.slug} )

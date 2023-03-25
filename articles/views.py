@@ -61,7 +61,8 @@ def article_search_view(request):
     if query_id is not None:
         #request_rec = Article.objects.get(id=query_id)
         lookups = Q(title__icontains=query_id) | Q(content__icontains=query_id)
-        qs = Article.objects.filter(lookups)
+        #qs = Article.objects.filter(lookups)
+        qs = Article.objects.search(query_id)
 
     
     context = {
