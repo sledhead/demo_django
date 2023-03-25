@@ -11,7 +11,7 @@ from .utils import slugify_instance_title
 class ArticleManager(models.Manager):
     def search(self, query):
         lookups = Q(title__icontains=query) | Q(content__icontains=query)
-        return Article.objects.filter(lookups)
+        return self.get_queryset().filter(lookups)
     
 
 # Create your models here.
