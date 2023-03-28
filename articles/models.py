@@ -26,6 +26,7 @@ class ArticleManager(models.Manager):
 
 # Create your models here.
 class Article(models.Model):
+    user = models.ForeignKey("auth.User", blank=True, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=120)
     slug = models.SlugField( unique=True, blank=True, null=True)
     content = models.TextField()

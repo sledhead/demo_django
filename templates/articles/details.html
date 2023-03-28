@@ -5,6 +5,12 @@
 {% block content %}
 
 <h1> {{single_object.title}} </h1>
+<p>Author: {{single_object.user}}
+    {% if request.user == single_object.user %}
+    This is you
+    {% endif %}
+</p>
+
 <p> {{single_object.content}} </p>
 
 <b>Thanks for surfing with us!!!</b>
