@@ -53,3 +53,13 @@ class ArticleTestCase(TestCase):
         unique_slug_list = list(set(slug_list))
 
         self.assertEqual(len(unique_slug_list), len(slug_list))
+
+    def test_article_search_manager(self):
+        qs = Article.objects.search(query='Test Title')
+        self.assertEqual(qs.count(), self.number_of_articles)
+
+        qs = Article.objects.search(query='Test Title')
+        self.assertEqual(qs.count(), self.number_of_articles)
+
+        qs = Article.objects.search(query='simple message')
+        self.assertEqual(qs.count(), self.number_of_articles)
