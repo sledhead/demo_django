@@ -4,4 +4,10 @@ from django.contrib import admin
 from .models import RecipeIngredient, Recipe
 
 admin.site.register(RecipeIngredient)
-admin.site.register(Recipe)
+
+class RecipeAdmin(admin.ModelAdmin):
+    list_display = ['user', 'name']
+    readonly_fields = ['user', 'timestamp', 'updated']
+
+
+admin.site.register(Recipe, RecipeAdmin)
