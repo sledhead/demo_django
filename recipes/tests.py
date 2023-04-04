@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+frome .models import RecipeIngredient, Recipe
+
 # Create your tests here.
 
 User = get_user_model()
@@ -21,4 +23,9 @@ class RecipeTestCase(TestCase):
         
         qs = User.objects.all()
         self.assertEqual(qs.count(), 1)
+
+    def test_user_recipe_count(self):
+        user = self.user_a
+        qs = user.recipe_set.all()
+        self.assertEqual(qs.count(), 0)
 
