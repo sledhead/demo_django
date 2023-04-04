@@ -6,5 +6,19 @@ from django.test import TestCase
 User = get_user_model()
 
 class UserTestCase(TestCase):
-    def SetUp(self):
-        self.user_a = User.objects.create_user("codespaces", password='testme')
+    def setUp(self):
+        self.user_a = User.objects.create_user("snowman", password='goatman')
+
+    def test_user_pw(self):
+        checked = self.user_a.check_password('goatman')
+        self.assertTrue(checked)
+
+class RecipeTestCase(TestCase):
+    def setUp(self):
+        self.user_a = User.objects.create_user("snowman", password='25snow99')
+
+    def test_user_count(self):
+        
+        qs = User.objects.all()
+        self.assertEqual(qs.count(), 1)
+
