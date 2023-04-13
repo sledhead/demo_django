@@ -21,6 +21,7 @@ class RecipeTestCase(TestCase):
         self.user_a = User.objects.create_user("snowman", password='25snow99')
         self.recipe_a = Recipe.objects.create(name='Pulled beef', user=self.user_a)
         self.recipe_b = Recipe.objects.create(name='Pulled beef sandwich', user=self.user_a)
+        self.recipe_c = Recipe.objects.create(name='steamed carrots', user=self.user_a)
 
     def test_user_count(self):
         
@@ -31,12 +32,12 @@ class RecipeTestCase(TestCase):
         user = self.user_a
         qs = user.recipe_set.all()
         print(qs)
-        self.assertEqual(qs.count(), 2)
+        self.assertEqual(qs.count(), 3)
 
     
     def test_user_recipe_forward_count(self):
         user = self.user_a
         qs = Recipe.objects.filter(user=user)
         print(qs)
-        self.assertEqual(qs.count(), 2)
+        self.assertEqual(qs.count(), 3)
 
