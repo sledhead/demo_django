@@ -23,6 +23,8 @@ class RecipeTestCase(TestCase):
         self.recipe_b = Recipe.objects.create(name='Pulled beef sandwich', user=self.user_a)
         self.recipe_c = Recipe.objects.create(name='steamed carrots', user=self.user_a)
 
+        self.recipe_ingredient_a = RecipeIngredient.objects.create(recipe=self.recipe_a, name='Beef', quantity='1/4', unit='pound')
+
     def test_user_count(self):
         
         qs = User.objects.all()
@@ -40,4 +42,11 @@ class RecipeTestCase(TestCase):
         qs = Recipe.objects.filter(user=user)
         print(qs)
         self.assertEqual(qs.count(), 3)
+
+    
+    def test_recipe_ingredient_reserve_count(self):
+        recipe = self.recipe_a
+        qs = recipe.recipeingredient_set.all()
+        print(qs)
+        self.assertEqual(qs.count(), 1)
 

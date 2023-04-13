@@ -16,7 +16,7 @@ class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     name = models.CharField(max_length=220)
     desciption = models.TextField(blank=True, null=True)
-    quanity = models.CharField(max_length=50)
+    quantity = models.CharField(max_length=50)
     unit = models.CharField(max_length=50)
     
     directions = models.TextField(blank=True, null=True)
